@@ -265,6 +265,10 @@ def run_in_container(
     if os.getenv("_MOUNT_HOST_LIBRELANE") == "1":
         host_librelane_pythonpath = os.path.dirname(__file_dir__)
         mount_args += ["-v", f"{host_librelane_pythonpath}:/host_librelane"]
+        # The image lists /host_librelane first on NIX_PYTHONPATH, but
+        # nixpkgs' sitecustomize appends those entries after site-packages,
+        # so the image's own copy still wins. PYTHONPATH is prepended.
+        mount_args += ["-e", "PYTHONPATH=/host_librelane"]
 
     cmd = (
         [
