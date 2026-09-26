@@ -64,6 +64,8 @@ if { $::env(GRT_RESIZER_FIX_HOLD_FIRST) == 1 } {
 source $::env(SCRIPTS_DIR)/openroad/common/dpl.tcl
 unset_dont_touch_objects
 if { $::env(GRT_RESIZER_RUN_GRT) } {
+    set ::grt_extra_args [list]
+    append_if_exists_argument ::grt_extra_args GRT_RESIZER_CRITICAL_NETS_PCT -critical_nets_percentage
     source $::env(SCRIPTS_DIR)/openroad/common/grt.tcl
 }
 

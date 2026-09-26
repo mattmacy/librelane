@@ -2903,6 +2903,12 @@ class ResizerTimingPostGRT(ResizerStep):
             default=True,
         ),
         Variable(
+            "GRT_RESIZER_CRITICAL_NETS_PCT",
+            Optional[int],
+            "Percentage of nets the global router treats as timing-critical when ordering nets for rip-up and re-route, applied only to the global routing run after the resizer (see GRT_RESIZER_RUN_GRT). 0 disables timing-driven net ordering in that run, which also skips the parasitics estimate on partial routes that it triggers. If unset, OpenROAD's default is used.",
+            units="%",
+        ),
+        Variable(
             "GRT_RESIZER_SETUP_BUFFERING",
             bool,
             "Rebuffering and load splitting during setup fixing.",

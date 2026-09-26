@@ -24,6 +24,11 @@ set arg_list [list]
 lappend arg_list -congestion_iterations $::env(GRT_OVERFLOW_ITERS)
 lappend arg_list -verbose
 append_if_flag arg_list GRT_ALLOW_CONGESTION -allow_congestion
+# Extra arguments for this invocation only, set by the sourcing script
+if { [info exists ::grt_extra_args] } {
+    lappend arg_list {*}$::grt_extra_args
+    unset ::grt_extra_args
+}
 
 log_cmd global_route {*}$arg_list
 
