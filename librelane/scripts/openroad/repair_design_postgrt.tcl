@@ -48,6 +48,8 @@ log_cmd repair_design {*}$arg_list
 source $::env(SCRIPTS_DIR)/openroad/common/dpl.tcl
 unset_dont_touch_objects
 if { $::env(GRT_DESIGN_REPAIR_RUN_GRT) } {
+    set ::grt_extra_args [list]
+    append_if_exists_argument ::grt_extra_args GRT_DESIGN_REPAIR_CRITICAL_NETS_PCT -critical_nets_percentage
     source $::env(SCRIPTS_DIR)/openroad/common/grt.tcl
 }
 

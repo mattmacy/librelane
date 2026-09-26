@@ -2723,6 +2723,12 @@ class RepairDesignPostGRT(ResizerStep):
             units="%",
             deprecated_names=["GLB_RESIZER_MAX_CAP_MARGIN"],
         ),
+        Variable(
+            "GRT_DESIGN_REPAIR_CRITICAL_NETS_PCT",
+            Optional[int],
+            "Percentage of nets the global router treats as timing-critical when ordering nets for rip-up and re-route, applied only to the global routing run after the post-grt design repair (see GRT_DESIGN_REPAIR_RUN_GRT). 0 disables timing-driven net ordering in that run, which also skips the parasitics estimate on partial routes that it triggers. If unset, OpenROAD's default is used.",
+            units="%",
+        ),
     ]
 
     def get_script_path(self):
